@@ -1,0 +1,110 @@
+html, body{
+  height: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  overflow: auto;
+}
+
+a {
+  text-decoration: none;        
+}
+
+nav {
+  height: 40px; 
+  line-height: 40px; 
+  background: #363636;
+  z-index: 99999;
+}
+
+.nav_l {
+  float: left;
+  margin-right: 12px;
+  text-align: center;
+
+  > li {
+    float: left;
+    padding: 0 12px;
+    vertical-align: middle;
+
+    > a {
+      color: #bfbfbf;
+    }
+
+    > a:hover {
+      color: #F00;
+    }
+  }
+}
+
+.nav_r {
+  float: right;
+  @extend .nav_l;
+}
+
+#header {
+  height: 130px;
+  min-width: 990px;
+  margin-top: 0 !important;
+  background: #FFF;
+}
+
+fieldset {
+  position: relative;
+}
+
+.s_form_wrap {
+  width: 625px;
+  margin: 0 auto;
+  padding-top: 38px;
+  overflow: hidden;
+
+  > .s_form {
+    border: solid #FF0036;
+    border-width: 2px 0 2px 2px;    
+  }
+}
+
+
+#s_box {
+
+  #s_input_box {
+    float: left;
+    height: 36px;
+  
+    #s_input_wrap {
+      height: 36px;
+      position: relative;
+      vertical-align: middle;
+  
+      #s_input {
+        height: 36px;
+        width: 491px;
+        margin: 0;
+        padding: 5px 3px 5px 5px;
+        font: 16px/22px arial;
+        box-sizing: border-box;
+        z-index: 2;
+        outline: 0;
+      }
+    }
+  }
+  
+  button {
+    position: absolute;    
+    right: 0;
+    top: 0;
+    width: 132px;
+    height: 36px;
+    border: 0;
+    color: #FFF;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 5px;
+    background-color: #FF0036;
+    border-radius: 0;
+    z-index: 1;
+  }
+}
+
+// 宽度大于1260px; 625px
+// 宽度小于1260px； 则410px

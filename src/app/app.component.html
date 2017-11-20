@@ -1,5 +1,5 @@
 <nav>
-    <a [routerLink]=" ['./'] "
+    <!-- <a [routerLink]=" ['./'] "
       routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">
       Index
     </a>
@@ -18,9 +18,58 @@
     <a [routerLink]=" ['./about'] "
       routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">
       About
-    </a>
+    </a> -->
+      <div>
+        <ul class="nav_l">
+          <li>
+            <a href="www.baidu.com">模板网站</a>
+          </li>
+          <li>      
+            <a href="www.baidu.com">电商业</a>
+          </li>
+          <li>            
+            <a href="www.baidu.com">鞋子</a>
+          </li>
+          <li>            
+            <a href="www.baidu.com">衣服</a>
+          </li>
+          <li>            
+            <a href="www.baidu.com">首饰</a>
+          </li>          
+        </ul>
+        <ul class="nav_r">
+          <li>
+            <a href="www.baidu.com">登录</a>
+          </li>
+          <li>
+              <a href="www.baidu.com">注册</a>
+          </li>
+          <li>
+              <a href="www.baidu.com">成为会员</a>
+          </li>
+        </ul>
+      </div>
   </nav>
-
+  <div id="header">
+    <div id="headerLayout">
+      <div class="s_form_wrap">
+        <form name="s_form" class="s_form clearfix" novalidate>
+            <fieldset>
+              <!-- <legend>鞋子搜索</legend> -->
+              <div id="s_box" class="clearfix">
+                <label for="s_input" style="visibility: visible; display: none;">搜索鞋子/品牌／店铺</label>
+                <div id="s_input_box">
+                  <div id="s_input_wrap">
+                    <input id="s_input" type="text" autocomplete="off" role="search-input" title="请输入搜索文字" aria-label="请输入搜索文字">
+                  </div>
+                </div>
+                <button type="submit">搜索</button>            
+              </div>
+            </fieldset>
+          </form>
+      </div>
+    </div>
+  </div>
   <main>
     <router-outlet></router-outlet>
   </main>
