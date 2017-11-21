@@ -50,37 +50,40 @@
         </ul>
       </div>
   </nav>
-  <div id="header">
-    <div id="headerLayout">
+  <div class="header">
+    <div class="headerLayout">
       <div class="s_form_wrap">
         <form name="s_form" class="s_form clearfix" novalidate>
             <fieldset>
               <!-- <legend>鞋子搜索</legend> -->
-              <div id="s_box" class="clearfix">
-                <label for="s_input" style="visibility: visible; display: none;">搜索鞋子/品牌／店铺</label>
-                <div id="s_input_box">
-                  <div id="s_input_wrap">
-                    <input id="s_input" type="text" autocomplete="off" role="search-input" title="请输入搜索文字" aria-label="请输入搜索文字">
+              <div class="s_box clearfix">
+                <label for="s_input" class="s_box_placeholder">搜索 鞋子／品牌／店铺</label>
+                <div class="s_input_box">
+                  <div class="s_input_wrap">
+                    <input class="s_input" type="text" autocomplete="off" role="search-input" title="请输入搜索文字" aria-label="请输入搜索文字">
                   </div>
                 </div>
                 <button type="submit">搜索</button>            
               </div>
             </fieldset>
           </form>
-      </div>
+          <ul class="hot_query">
+            <li class="hot_query_highlight"><a href="http://www.baidu.com">皮鞋</a></li>
+            <li><a href="http://www.baidu.com">运动鞋</a></li>
+            <li><a href="http://www.baidu.com">布鞋</a></li>
+            <li class="hot_query_highlight"><a href="http://www.baidu.com">帆布鞋</a></li>
+            <li><a href="http://www.baidu.com">凉鞋</a></li>
+            <li><a href="http://www.baidu.com">高跟鞋</a></li>
+            <li><a href="http://www.baidu.com">棉鞋</a></li>
+          </ul>
+        </div>
     </div>
   </div>
   <main>
     <router-outlet></router-outlet>
   </main>
 
-  <pre class="app-state">this.appState.state = {{ appState.state | json }}</pre>
 
   <footer>
-    <span>WebPack Angular 2 Starter by <a [href]="url">@AngularClass</a></span>
-    <div>
-      <a [href]="url">
-        <img [src]="angularclassLogo" width="25%">
-      </a>
-    </div>
+  
   </footer>
