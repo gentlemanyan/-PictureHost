@@ -1,0 +1,53 @@
+/*styles for home content only*/
+
+@media screen and (min-width: 1260px) {
+  .home-warp {
+    width: 1230px;
+    margin: 0 auto;
+  }
+}
+
+.carousel-wrap {
+  width: 1230px; 
+  margin: 0 auto;
+
+  .carousel-img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.section {
+  margin-top: 30px;
+  box-sizing: border-box;
+  .section-title {
+    float: left;
+    width: 25%;
+    height: 340px;
+    background: rgba(130, 130, 130, 0.5);
+  }
+  
+  .section-content {
+    float: right;
+    width: 75%;
+    height: 170px;
+    background: #666;   
+    
+    .section-list {
+      height: 170px;
+      > li {
+        float: left;
+        width: 25%;
+        height: 100%;
+        // margin-left: 12px;
+        // width: 190px;
+      }
+      > li > a > img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+
+
+}

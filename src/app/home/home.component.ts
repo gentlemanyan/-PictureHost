@@ -10,7 +10,7 @@ import { XLargeDirective } from './x-large';
 @Component({
   selector: 'home', 
   providers: [Title],
-  styleUrls: [ './home.component.css' ],
+  styleUrls: [ './home.component.scss' ],
   templateUrl: './home.component.html'
 })
 export class HomeComponent implements OnInit {
