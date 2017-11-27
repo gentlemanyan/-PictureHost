@@ -119,7 +119,11 @@ module.exports = function (options) {
           use: ['style-loader', 'css-loader', 'sass-loader'],
           include: [helpers.root('src', 'styles')]
         },
-
+        
+        {
+          test: /.woff|.woff2|.svg|.eot|.ttf/,
+          use: 'url-loader?prefix=font/&limit=10000'
+        }
       ]
 
     },

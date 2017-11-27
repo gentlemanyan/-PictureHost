@@ -20,6 +20,9 @@ export class AppComponent implements OnInit {
   public name = 'Angular 2 Webpack Starter';
   public url = 'https://twitter.com/AngularClass';
 
+  public noop() {
+    
+  }
   constructor(
     public appState: AppState
   ) {}

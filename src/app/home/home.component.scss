@@ -1,16 +1,63 @@
 /*styles for home content only*/
+.home-nav {
+  width: 100%;
+  height: 40px;
+  background: #363636;
+  border-bottom: 2px solid #FF0036;
+
+  .home-navbar {
+    width: 800px;
+    height: 40px;
+    margin: 0 auto;
+    line-height: 40px;
+    
+    > li {
+      float: left;
+      height: 40px;
+      width: 130px;
+      text-align: center;
+
+      > a {
+        display: inline-block;
+        width: 100%;
+        text-decoration: none;
+        font-size: 16px;
+        color: #FFF;
+      }
+    }
+
+    & > li:hover, & > li:focus {
+      background: #FF0036;  
+    }
+  }
+}
+
+ngb-carousel:focus {
+  outline: none;
+}
 
 @media screen and (min-width: 1260px) {
   .home-warp {
     width: 1230px;
     margin: 0 auto;
   }
+
+  .section {
+    width: 1230px;
+  }
 }
+@media screen and (max-width: 1260px) {
+  .section {
+    width: 1040px;
+    margin: 30px auto 0 auto;
+  }
+}  
+
 
 .carousel-wrap {
   width: 1230px; 
   margin: 0 auto;
-
+  
   .carousel-img {
     width: 100%;
     height: 100%;
@@ -20,6 +67,11 @@
 .section {
   margin-top: 30px;
   box-sizing: border-box;
+  border: 2px solid #FF0036;
+  box-shadow: 2px 2px 2px 2px #ccc,
+              2px 2px 2px 2px #ccc,
+              2px 2px 2px 2px #ccc;
+
   .section-title {
     float: left;
     width: 25%;
@@ -39,8 +91,6 @@
         float: left;
         width: 25%;
         height: 100%;
-        // margin-left: 12px;
-        // width: 190px;
       }
       > li > a > img {
         width: 100%;
@@ -48,6 +98,4 @@
       }
     }
   }
-
-
 }
