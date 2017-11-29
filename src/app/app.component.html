@@ -57,7 +57,7 @@
             <fieldset>
               <!-- <legend>鞋子搜索</legend> -->
               <div class="s_box clearfix">
-                <label for="s_input" class="s_box_placeholder" #sLabel>搜索 鞋子／品牌／店铺</label>
+                <label for="s_input" class="s_box_placeholder" #sLabel (focus)="sInput">搜索 鞋子／品牌／店铺</label>
                 <div class="s_input_box">
                   <div class="s_input_wrap"> 
                     <input class="s_input" type="text" #sInput (focus)="sLabel.style.color = '#ccc'" (input)="sLabel.style.visibility = 'hidden'"

@@ -11,8 +11,7 @@
       </ul>
     </div>
   </div>
-  <div class="home-warp">
-    
+  <div class="home-wrap">
     <!-- 轮播图 -->
     <div class="carousel-wrap">
       <ngb-carousel>
@@ -39,159 +38,33 @@
         </ng-template>
       </ngb-carousel>
     </div>
-
-    <div class="section clearfix">
+    <div class="section clearfix" *ngFor="let section of shoesArr">
       <div class="section-title">
-          刀锋系列鞋子
+          <a [href]="section.titleUrl">
+            <img [src]="section.title" alt="标题">
+          </a> 
       </div>
       <div class="section-content">
-        <ul class="section-list clearfix">
-          <li>
-            <a href="javascript:void(0)">
-              <img src="assets/img/xiezi.jpg" alt="鞋子">
+        <ul class="section-list clearfix" *ngFor="let row of section.rows">
+          <li *ngFor="let subitem of row.shoes">
+            <a [href]="subitem.shoeUrl">
+              <img [src]="subitem.shoeImg" alt="鞋子">
             </a>
           </li>
-          <li>
-            <a href="javascript:void(0)">
-              <img src="assets/img/xiezi.jpg" alt="鞋子">
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0)">
-              <img src="assets/img/xiezi.jpg" alt="鞋子">
-            </a>
-          </li>
-          <li>
-              <a href="javascript:void(0)">
-                <img src="assets/img/xiezi.jpg" alt="鞋子">
-              </a>
-            </li>
         </ul>
-        <ul class="section-list clearfix">
-            <li>
-              <a href="javascript:void(0)">
-                <img src="assets/img/xiezi.jpg" alt="鞋子">
-              </a>
-            </li>
-            <li>
-              <a href="javascript:void(0)">
-                <img src="assets/img/xiezi.jpg" alt="鞋子">
-              </a>
-            </li>
-            <li>
-              <a href="javascript:void(0)">
-                <img src="assets/img/xiezi.jpg" alt="鞋子">
-              </a>
-            </li>
-            <li>
-                <a href="javascript:void(0)">
-                  <img src="assets/img/xiezi.jpg" alt="鞋子">
-                </a>
-              </li>
-          </ul>
       </div>
     </div>
-    <div class="section clearfix">
-      <div class="section-title">
-          刀锋系列鞋子
-      </div>
-      <div class="section-content">
-        <ul class="section-list clearfix">
-          <li>
-            <a href="javascript:void(0)">
-              <img src="assets/img/xiezi.jpg" alt="鞋子">
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0)">
-              <img src="assets/img/xiezi.jpg" alt="鞋子">
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0)">
-              <img src="assets/img/xiezi.jpg" alt="鞋子">
-            </a>
-          </li>
-          <li>
-              <a href="javascript:void(0)">
-                <img src="assets/img/xiezi.jpg" alt="鞋子">
-              </a>
-            </li>
-        </ul>
-        <ul class="section-list clearfix">
-            <li>
-              <a href="javascript:void(0)">
-                <img src="assets/img/xiezi.jpg" alt="鞋子">
-              </a>
-            </li>
-            <li>
-              <a href="javascript:void(0)">
-                <img src="assets/img/xiezi.jpg" alt="鞋子">
-              </a>
-            </li>
-            <li>
-              <a href="javascript:void(0)">
-                <img src="assets/img/xiezi.jpg" alt="鞋子">
-              </a>
-            </li>
-            <li>
-                <a href="javascript:void(0)">
-                  <img src="assets/img/xiezi.jpg" alt="鞋子">
-                </a>
-              </li>
-          </ul>
-      </div>
-    </div>
-    <div class="section clearfix">
-        <div class="section-title">
-            刀锋系列鞋子
-        </div>
-        <div class="section-content">
-          <ul class="section-list clearfix">
-            <li>
-              <a href="javascript:void(0)">
-                <img src="assets/img/xiezi.jpg" alt="鞋子">
-              </a>
-            </li>
-            <li>
-              <a href="javascript:void(0)">
-                <img src="assets/img/xiezi.jpg" alt="鞋子">
-              </a>
-            </li>
-            <li>
-              <a href="javascript:void(0)">
-                <img src="assets/img/xiezi.jpg" alt="鞋子">
-              </a>
-            </li>
-            <li>
-                <a href="javascript:void(0)">
-                  <img src="assets/img/xiezi.jpg" alt="鞋子">
-                </a>
-              </li>
-          </ul>
-          <ul class="section-list clearfix">
-              <li>
-                <a href="javascript:void(0)">
-                  <img src="assets/img/xiezi.jpg" alt="鞋子">
-                </a>
-              </li>
-              <li>
-                <a href="javascript:void(0)">
-                  <img src="assets/img/xiezi.jpg" alt="鞋子">
-                </a>
-              </li>
-              <li>
-                <a href="javascript:void(0)">
-                  <img src="assets/img/xiezi.jpg" alt="鞋子">
-                </a>
-              </li>
-              <li>
-                  <a href="javascript:void(0)">
-                    <img src="assets/img/xiezi.jpg" alt="鞋子">
-                  </a>
-                </li>
-            </ul>
-        </div>
-      </div>
   </div>
 </div>
+<!-- {
+      firstShoes: [
+        {shoeUrl: 'assets/img/xiezi.jpg'},
+        {shoeUrl: 'assets/img/xiezi.jpg'},
+        {shoeUrl: 'assets/img/xiezi.jpg'},
+        {shoeUrl: 'assets/img/xiezi.jpg'}
+      ], secondShoes: [
+        {shoeUrl: 'assets/img/xiezi.jpg'},
+        {shoeUrl: 'assets/img/xiezi.jpg'},
+        {shoeUrl: 'assets/img/xiezi.jpg'},
+        {shoeUrl: 'assets/img/xiezi.jpg'}
+      ]} -->

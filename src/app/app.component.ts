@@ -27,6 +27,9 @@ export class AppComponent implements OnInit {
     public appState: AppState
   ) {}
 
+  dealInputFocus() {
+    
+  }
   public ngOnInit() {
     console.log('Initial App State', this.appState.state);
   }

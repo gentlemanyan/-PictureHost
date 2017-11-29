@@ -8,7 +8,7 @@ import { Title } from './title';
 import { XLargeDirective } from './x-large';
 
 @Component({
-  selector: 'home', 
+  selector: 'home',
   providers: [Title],
   styleUrls: [ './home.component.scss' ],
   templateUrl: './home.component.html'
@@ -16,7 +16,38 @@ import { XLargeDirective } from './x-large';
 export class HomeComponent implements OnInit {
 
   public localState = { value: '' };
- 
+  public shoesArr = [{
+    title: 'assets/img/ganbang.jpg',
+    titleUrl: 'http://www.baidu.com',
+    rows: [{
+      shoes: [
+        {shoeImg: 'assets/img/xiezi.jpg'},
+        {shoeImg: 'assets/img/xiezi.jpg'},
+        {shoeImg: 'assets/img/xiezi.jpg'},
+        {shoeImg: 'assets/img/xiezi.jpg'},
+        {shoeImg: 'assets/img/xiezi.jpg'},
+        {shoeImg: 'assets/img/xiezi.jpg'},
+        {shoeImg: 'assets/img/xiezi.jpg'},
+        {shoeImg: 'assets/img/xiezi.jpg'}
+      ]}],
+    },
+    {
+    title: 'assets/img/ganbang.jpg',
+    titleUrl: 'http://www.baidu.com',
+    rows: [{
+      shoes: [
+        {shoeImg: 'assets/img/xiezi.jpg'},
+        {shoeImg: 'assets/img/xiezi.jpg'},
+        {shoeImg: 'assets/img/xiezi.jpg'},
+        {shoeImg: 'assets/img/xiezi.jpg'},
+        {shoeImg: 'assets/img/xiezi.jpg'},
+        {shoeImg: 'assets/img/xiezi.jpg'},
+        {shoeImg: 'assets/img/xiezi.jpg'},
+        {shoeImg: 'assets/img/xiezi.jpg'}
+      ],
+    }]
+  }];
+
   constructor(
     public appState: AppState,
     public title: Title
