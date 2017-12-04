@@ -31,6 +31,7 @@ import { HomeComponent } from './home';
 import { AboutComponent } from './about';
 import { NoContentComponent } from './no-content';
 import { XLargeDirective } from './home/x-large';
+import { LoginComponent } from './login/login.component';
 
 import '../styles/reset.scss';
 import '../styles/styles.scss';
@@ -58,7 +59,8 @@ type StoreType = {
     AboutComponent,
     HomeComponent,
     NoContentComponent,
-    XLargeDirective
+    XLargeDirective,
+    LoginComponent
   ],
   /**
    * Import Angular's modules.

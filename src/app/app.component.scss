@@ -5,6 +5,10 @@ html, body{
   overflow: auto;
 }
 
+button, input[type=checkbox] {
+  cursor: pointer;
+}
+
 nav {
   height: 40px; 
   line-height: 40px; 

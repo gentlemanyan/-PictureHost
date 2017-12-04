@@ -1,0 +1,51 @@
+.container {
+  max-width: 500px;
+  min-height: 300px;
+}
+
+.form-header {
+  height: 40px;
+  background: #007bff;
+
+  h2 {
+    float: left;
+    height: 100%;
+    padding: 5px 12px;
+    color: #FFF;
+    font-size: 18px;
+    line-height: 30px;
+  }
+
+  .close {
+    height: 40px;
+    padding: 3px 5px;    
+    font-size: 28px;
+    line-height: 30px;
+
+    span {
+      vertical-align: super;
+    }
+
+    span:focus{
+      outline: none;
+    }
+  }
+
+  .close:focus {
+    outline: none;
+  }
+  
+}
+
+.loginForm {
+  min-height: 300px;
+  height: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  box-shadow: 3px 3px 3px 3px #ccc;
+  font-size: 1.167rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
