@@ -8,3 +8,16 @@ html, body{
 button, input[type=checkbox] {
   cursor: pointer;
 }
+
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;  
+  width: 100%;
+  min-height: 30px;
+  padding: 12px;
+  background: #007bff;
+  font-size: 16px;
+  text-align: center;
+  z-index: -1;
+}

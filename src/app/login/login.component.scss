@@ -1,51 +1,62 @@
-.container {
-  max-width: 500px;
-  min-height: 300px;
-}
-
-.form-header {
-  height: 40px;
-  background: #007bff;
-
-  h2 {
-    float: left;
-    height: 100%;
-    padding: 5px 12px;
-    color: #FFF;
-    font-size: 18px;
-    line-height: 30px;
-  }
-
-  .close {
-    height: 40px;
-    padding: 3px 5px;    
-    font-size: 28px;
-    line-height: 30px;
-
-    span {
-      vertical-align: super;
-    }
-
-    span:focus{
-      outline: none;
-    }
-  }
-
-  .close:focus {
-    outline: none;
-  }
-  
+.login-conent {
+  min-height: 700px;
+  font-size: 14px;
 }
 
 .loginForm {
-  min-height: 300px;
-  height: 100%;
-  padding: 12px;
-  border: 1px solid #ccc;
+  max-width: 400px; 
+  height: 420px;
+  margin: 150px auto 0;
+  border: 2px solid #007bff;
+  background: #FFF;
   box-shadow: 3px 3px 3px 3px #ccc;
   font-size: 1.167rem;
+
+  .form-header {
+    height: 40px;
+    background: #007bff;
+    h2 {
+      float: left;
+      height: 100%;
+      padding: 5px 12px;
+      color: #FFF;
+      font-size: 18px;
+      line-height: 30px;
+    }
+    .close {
+      height: 40px;
+      padding: 3px 5px;
+      font-size: 28px;
+      line-height: 30px;
+      span {
+        vertical-align: super;
+      }
+      span:focus {
+        outline: none;
+      } 
+    }
+    .close:focus {
+      outline: none;
+    }
+  }
+  .form-content {
+    padding: 12px;
+  }
 }
 
 .form-group {
   margin-bottom: 1.5rem;
+
+  .form-control {
+    line-height: 2;
+  }
+
+  .btn {
+    line-height: 2;
+    font-size: 16px;
+  }
+}
+
+a { 
+  color: #333;
 }
