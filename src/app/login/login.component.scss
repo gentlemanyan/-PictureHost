@@ -1,16 +1,17 @@
 .login-conent {
   min-height: 700px;
   font-size: 14px;
+  background: #f3f7f7;
 }
 
 .loginForm {
-  max-width: 400px; 
-  height: 420px;
+  max-width: 900px; 
+  height: 500px;
   margin: 150px auto 0;
-  border: 2px solid #007bff;
+  // border: 2px solid #007bff;
   background: #FFF;
   box-shadow: 3px 3px 3px 3px #ccc;
-  font-size: 1.167rem;
+  overflow: hidden;
 
   .form-header {
     height: 40px;
@@ -40,7 +41,36 @@
     }
   }
   .form-content {
+    float: left;
+    width: 50%;
     padding: 12px;
+
+    .form-title {
+      margin-top: 30px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+    
+      ul {
+        padding: 10px 0;
+        overflow: hidden;
+        li {
+          float: left;
+          width: 50%;
+          font-size: 22px;
+          padding: 0 12px
+        }
+
+        li:first-child{
+          border-right: 1px solid #ccc;
+        }
+
+        a {
+          color: #888;
+          text-decoration: none;
+        }
+      }
+    }
   }
 }
 
