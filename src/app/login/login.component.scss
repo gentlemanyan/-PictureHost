@@ -5,14 +5,12 @@
 }
 
 .loginForm {
-  max-width: 900px; 
+  max-width: 900px;
   height: 500px;
-  margin: 150px auto 0;
-  // border: 2px solid #007bff;
+  margin: 150px auto 0; // border: 2px solid #007bff;
   background: #FFF;
   box-shadow: 3px 3px 3px 3px #ccc;
   overflow: hidden;
-
   .form-header {
     height: 40px;
     background: #007bff;
@@ -34,7 +32,7 @@
       }
       span:focus {
         outline: none;
-      } 
+      }
     }
     .close:focus {
       outline: none;
@@ -45,31 +43,26 @@
     width: 50%;
     height: 100%;
     padding: 12px;
-
     .form-title {
       margin-top: 30px;
       margin-left: auto;
       margin-right: auto;
       text-align: center;
-    
-      ul {
-        padding: 10px 0;
-        overflow: hidden;
-        li {
-          float: left;
-          width: 50%;
-          font-size: 22px;
-          padding: 0 12px
-        }
-
-        li:first-child{
-          border-right: 1px solid #ccc;
-        }
-
-        a {
-          color: #888;
-          text-decoration: none;
-        }
+      padding: 10px 0;
+      overflow: hidden;
+      li {
+        float: left;
+        width: 50%;
+        font-size: 22px;
+        padding: 0 12px
+      }
+      li:first-child {
+        border-right: 1px solid #ccc;
+      }
+      a {
+        width: 70%;
+        color: #888;
+        text-decoration: none;
       }
     }
   }
@@ -77,17 +70,15 @@
 
 .form-group {
   margin-bottom: 1.7rem;
-
   .form-control {
     line-height: 2;
   }
-
   .btn {
     line-height: 2;
     font-size: 16px;
   }
 }
 
-a { 
+a {
   color: #333;
 }

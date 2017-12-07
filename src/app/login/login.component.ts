@@ -14,9 +14,13 @@ import {
 })
 
 export class LoginComponent {
-  public isShow: boolean = false;
+  public login: boolean = false;
+  public loginFormIsShow: boolean = true;
 
   constructor() {
+  }
 
+  public showLogin() {
+    this.loginFormIsShow = true;
   }
 }
