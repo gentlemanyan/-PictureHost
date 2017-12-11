@@ -3,31 +3,33 @@
     <div class="row">
       <div class="col-12">
         <div class="loginForm">
-          <!-- <div class="form-header">
-                <h2>登录</h2>
-              </div> -->
-          <form class="form-horizontal form-content" name="loginForm" novalidate>
+          <form class="form-horizontal form-content" [formGroup]="loginForm" name="loginForm"
+           (submit)="login()" novalidate>
               <ul class="form-group form-title col-8">
                 <li>
                   <a href="javascript:void(0)" class="btn" [ngClass]="{'btn-info': loginFormIsShow, 'text-white': loginFormIsShow}" 
-                  (click)="loginFormIsShow = true;">登录</a>
+                  (click)="toggleFormShow(true)">登录</a>
                 </li>
                 <li>
                   <a href="javascript:void(0)" class="btn" [ngClass]="{'btn-info': !loginFormIsShow, 'text-white': !loginFormIsShow}" 
-                  (click)="loginFormIsShow = false;">注册</a>
+                  (click)="toggleFormShow(false)">注册</a>
                 </li>
               </ul>
             <div class="login-content" *ngIf="loginFormIsShow">
               <div class="form-group">
                 <div class="input-group col-12">
-                  <span class="input-group-addon bg-info text-white col-2">用户帐号</span>
-                  <input type="text" id="username" name="username" class="form-control" placeholder="请输入用户名" aria-label="请输入用户名">
+                  <span class="input-group-addon bg-info text-white col-auto">帐号</span>
+                  <input type="text" id="username" name="username" formControlName="username"
+                   class="form-control" placeholder="请输入用户名" aria-label="请输入用户名">
+                   <span class="text-danger" *ngIf="getFormControl('username').dirty && getFormControl('username').hasError('username')">账户格式不正确</span>
                 </div>
               </div>
               <div class="form-group">
                 <div class="input-group col-12">
-                  <span class="input-group-addon bg-info text-white col-2">用户密码</span>
-                  <input type="password" id="password" name="password" class="form-control" minlength="4" maxlength="16" placeholder="请输入4-16位密码">
+                  <span class="input-group-addon bg-info text-white col-auto">密码</span>
+                  <input type="password" id="password" name="password" formControlName="password"
+                  class="form-control" placeholder="请输入4-16位密码">  
+                  <div class="alert alert-danger" *ngIf="getFormControl('password').invalid && getFormControl('password').dirty">密码最小4位最大16位</div>
                 </div>
               </div>
               <div class="form-group col-12">
@@ -38,14 +40,14 @@
                 </div>
               </div>
               <div class="form-group col-12">
-                <button type="button" class="btn btn-outline-primary btn-block">登录</button>
+                <button type="submit" class="btn btn-outline-primary btn-block">登录</button>
               </div>
               <div class="form-group col-12">
-                <div style="text-align: lef; float: left">
-                  <a href="javascript:void(0)">其他登录方式</a>
+                <div class="float-left">
+                  <a href="javascript:void(0)" class="text-muted">其他登录方式</a>
                 </div>
-                <div style="text-align: right; float: right">
-                  <a href="javascript:void(0)">忘记密码?</a>
+                <div class="float-right">
+                  <a href="javascript:void(0)" class="text-muted">忘记密码?</a>
                 </div>
               </div>
             </div>
@@ -84,10 +86,8 @@
             </div>
           </form>
 
-
-
           <div class="card card-inverse">
-            <img src="assets/img/n3.jpg" class="card-img" alt="爆款鞋">
+            <img src="assets/img/n3.jpg" class="card-img-right" alt="爆款鞋">
             <!--  style="height: 100%;width: 100%; z-index: -1" -->
             <!--  style="width: 50%; float: right; height: 100%;background: url('assets/img/n3.jpg'); opacity: 0.5" -->
           </div>
