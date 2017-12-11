@@ -7,12 +7,13 @@ import * as logger from 'koa-logger';
 import * as serve from 'koa-static';
 import * as session from 'koa-session';
 import * as path from 'path';
-import * as mongoose from 'mongoose';
-
+// import * as mongoose from 'mongoose';
+import mongoose = require('mongoose');
 import config from './config/config';
 import index from './routes/index.route';
 
 import * as uniqValidator from 'mongoose-beautiful-unique-validation';
+mongoose.Promise = global.Promise;
 mongoose.connect(config.mongoose.uri, config.mongoose.options);
 mongoose.plugin(uniqValidator);
 
@@ -49,7 +50,7 @@ app.use(index.routes()); // index.allowedMethods()
 
 // error-handling
 app.on('error', (err, ctx) => {
-  console.log('server error', err);
+  console.log('发现错误：', err);
   ctx.status = 500;
   ctx.body = err._message;
 });

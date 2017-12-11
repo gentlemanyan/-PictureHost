@@ -1,9 +1,15 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Observable } from 'rxjs/Rx';
+import {
+  Routes,
+  Router,
+  RouterModule,
+  ActivatedRoute,
+  PreloadAllModules
+ } from '@angular/router';
 
 import { IUser, UserService } from './login.service';
-import { log } from 'util';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -16,13 +22,14 @@ import { log } from 'util';
 
 export class LoginComponent implements OnInit {
   public loginParam: IUser = {
-    username: "",
-    password: ""
+    username: '',
+    password: ''
   };
   public loginForm: FormGroup;
   public loginFormIsShow: boolean;
 
-  constructor(public userservice: UserService, private fb: FormBuilder) {
+  constructor(public userservice: UserService, private fb: FormBuilder,
+              public router: Router,   public route: ActivatedRoute ) {
     this.loginForm = this.fb.group({
       username: ['', [Validators.required], [this.loginValidControl]],
       password: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(16)]]
@@ -50,7 +57,7 @@ export class LoginComponent implements OnInit {
       }, 100);
     });
   }
-  
+
   /**
    * 两次输入密码一致性校验
    * @param {FormControl} control - 表单控制对象
@@ -103,10 +110,9 @@ export class LoginComponent implements OnInit {
     this.loginParam.password = this.getFormControl('password').value;
     const promise = this.userservice.login(this.loginParam);
     promise.then((data) => {
-      console.log("输出最后的结果");
-      console.log(data);
-    }, () => {
-      console.log("输出错误");
+      this.router.navigate(['/']);
+    }, (data) => {
+      console.log(data.retmsg);
     });
   }
 }

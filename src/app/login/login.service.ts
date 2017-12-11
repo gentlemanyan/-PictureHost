@@ -27,10 +27,12 @@ export class UserService implements IUserMethod {
   ) {}
 
   public login( user: IUser ): Promise<any> {
-    return this.http.post('/session', user) 
+    return this.http.post('/session', user)
       .toPromise()
-      .then((response) => response.json().data as any[])
-      .then((data) => { console.log(data);})
+      // .then((response) => response.json().data as any[])
+      .then((data) => {
+        Promise.resolve(data);
+      })
       .catch((e) => {
         console.error('登录错误');
         return Promise.reject( e );

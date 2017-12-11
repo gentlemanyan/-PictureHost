@@ -1,7 +1,6 @@
 # @AngularClass
 # mongodb data
 mongodb_data
-
 # Logs
 logs
 *.log
@@ -53,6 +52,7 @@ npm-debug.log
 /__build__/**
 /public/dist/
 /src/*/dist/
+/server/dist/
 /dist/**
 /.awcache
 .webpack.json
