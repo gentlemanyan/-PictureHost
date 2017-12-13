@@ -13,6 +13,7 @@ export default {
     uri: 'mongodb://localhost:27017/zy_img',
     options: {
       useMongoClient: true,
+      autoIndex: true
     },
   },
   crypto: {

@@ -29,7 +29,7 @@ const userSchema: Schema = new Schema({
     ]
   },
   phone: {
-    type: String,
+    type: Number,
     unique: '手机号已被使用，请更换手机号',
     validate: [
       {

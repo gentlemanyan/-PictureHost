@@ -1,11 +1,8 @@
 import app from './app';
 import helper from './config/helper';
+import config from './config/config'
 
-/**
- * Get port from environment and store in koa.
- */
-
-const port = helper.normalizePort(process.env.PORT || 4000);
+const port = helper.normalizePort(process.env.PORT || config.port);
 
 app.listen(port, () => {
   console.log(`success running at port ${port}`);

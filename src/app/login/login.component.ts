@@ -98,7 +98,7 @@ export class LoginComponent implements OnInit {
   /**
    * 用户登录
    */
-  public login() {
+  public login($loginForm) {
     if ( this.loginForm.hasError('username') ) {
       alert('用户名错误');
     }
@@ -110,7 +110,10 @@ export class LoginComponent implements OnInit {
     this.loginParam.password = this.getFormControl('password').value;
     const promise = this.userservice.login(this.loginParam);
     promise.then((data) => {
-      this.router.navigate(['/']);
+      // 手动导航到首页
+      // this.router.navigate(['/']);
+      this.clearForm();
+      $loginForm.submit();
     }, (data) => {
       console.log(data.retmsg);
     });
