@@ -5,7 +5,6 @@ class SessionController {
   constructor() {}
 
   public async create(ctx, next) {
-    console.log('输出会话。。。。。');
     const reqObj = ctx.request.body;
     if ( reqObj.username === null || reqObj.username === '' ) {
       ctx.throw('用户账户不能为空!');
@@ -21,7 +20,9 @@ class SessionController {
       ctx.cookies.set('username', reqObj.username);
       ctx.cookies.set('password', reqObj.password);
       ctx.status = 200;
-      ctx.redirect('/');
+      ctx.body = {
+        retmsg: '登录成功！',
+      };
     } else {
       ctx.status = 404;
       ctx.body = {

@@ -1,14 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Observable } from 'rxjs/Rx';
-import {
-  Routes,
-  Router,
-  RouterModule,
-  ActivatedRoute,
-  PreloadAllModules
- } from '@angular/router';
-
+import { Routes, Router, RouterModule, ActivatedRoute, PreloadAllModules } from '@angular/router';
+import { NzMessageService } from 'ng-zorro-antd';
 import { IUser, UserService } from './login.service';
 
 @Component({
@@ -29,7 +23,8 @@ export class LoginComponent implements OnInit {
   public loginFormIsShow: boolean;
 
   constructor(public userservice: UserService, private fb: FormBuilder,
-              public router: Router,   public route: ActivatedRoute ) {
+              public router: Router, public route: ActivatedRoute,
+              private _message: NzMessageService ) {
     this.loginForm = this.fb.group({
       username: ['', [Validators.required], [this.loginValidControl]],
       password: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(16)]]
@@ -111,11 +106,12 @@ export class LoginComponent implements OnInit {
     const promise = this.userservice.login(this.loginParam);
     promise.then((data) => {
       // 手动导航到首页
-      // this.router.navigate(['/']);
-      this.clearForm();
-      $loginForm.submit();
+      this._message.success(data.retmsg);
+      setTimeout(() => {
+        this.router.navigate(['/']);
+      }, 2000);
     }, (data) => {
-      console.log(data.retmsg);
+      this._message.error(data.retmsg, {nzDuration: 2000});
     });
   }
 }

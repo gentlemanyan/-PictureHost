@@ -1,8 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
+import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 
 import {
   NgModule,
@@ -69,10 +70,11 @@ type StoreType = {
    */
   imports: [
     BrowserModule,
+    HttpModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpModule,
     NgZorroAntdModule.forRoot(),
     RouterModule.forRoot(ROUTES, {
       useHash: Boolean(history.pushState) === false,
