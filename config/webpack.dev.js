@@ -52,7 +52,9 @@ module.exports = function (options) {
      * See: https://github.com/webpack/docs/wiki/build-performance#sourcemaps
      */
     devtool: 'cheap-module-source-map',
-
+    externals: {
+      md5: 'md5'
+    },
     /**
      * Options affecting the output of the compilation.
      *

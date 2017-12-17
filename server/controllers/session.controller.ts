@@ -1,3 +1,4 @@
+import { isNull } from '../lib/tool';
 import { saltHash } from '../lib/auth';
 import { User } from '../models/user.model';
 
@@ -6,27 +7,34 @@ class SessionController {
 
   public async create(ctx, next) {
     const reqObj = ctx.request.body;
-    if ( reqObj.username === null || reqObj.username === '' ) {
-      ctx.throw('用户账户不能为空!');
+    if ( isNull(reqObj.username) ) {
+      ctx.throw('用户名为空，请检查!');
     }
-    if ( reqObj.password === null || reqObj.password === '' ) {
-      ctx.throw('请输入密码');
+    if ( isNull(reqObj.password) ) {
+      ctx.throw('密码为空，请检查!');
     }
-    console.log( reqObj.username );
-    console.log( reqObj.password );
 
-    const user = await User.findOne({username: reqObj.username, password: reqObj.password });
-    if ( !user ) {
-      ctx.cookies.set('username', reqObj.username);
-      ctx.cookies.set('password', reqObj.password);
-      ctx.status = 200;
-      ctx.body = {
-        retmsg: '登录成功！',
-      };
+    const user: any = await User.findOne({username: reqObj.username});
+    if ( user ) {
+      if ( reqObj.password === user.password ) {
+        ctx.cookies.set('username', reqObj.username);
+        ctx.cookies.set('password', reqObj.password);
+        ctx.status = 200;
+        ctx.body = {
+          retmsg: '登录成功!',
+        };
+      }
+      else {
+        ctx.status = 401;
+        ctx.body = {
+          retmsg: '用户名或密码错误!',
+        };
+      }
+      
     } else {
-      ctx.status = 404;
+      ctx.status = 401;
       ctx.body = {
-        retmsg: '登录失败，请检查账户和密码是否正确',
+        retmsg: '用户不存在!',
       };
     }
     // reqObj.password = saltHash(reqObj.password);  password salt and hash

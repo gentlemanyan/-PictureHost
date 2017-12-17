@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-// 用户信息接口定义
+// 用户接口定义
 export interface IUser {
   username: string;
   password: string;
   passwordConfirm?: string;
   email?: string;
+  phone?: number;
 }
 
 export interface IUserMethod {
@@ -19,10 +20,20 @@ export interface IUserMethod {
  */
 @Injectable()
 export class UserService implements IUserMethod {
-  public user: IUser;
+  public loginParam: IUser = {
+    username: '',
+    password: '',
+  };
 
+  public registerParam: IUser = {
+    username: '',
+    password: '',
+    passwordConfirm: '',
+    email: '',
+    phone: 0
+  }
   constructor(
-    public http: HttpClient
+    public http: HttpClient,
   ) {}
 
   public login( user: IUser ): Promise<any> {

@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-12">
         <div class="loginForm">
-          <form class="form-horizontal form-content" [formGroup]="loginForm" name="loginForm" (submit)="login()" novalidate>
+          <!-- <form class="form-horizontal form-content" [formGroup]="loginForm" name="loginForm" (submit)="login()" novalidate>
               <ul class="form-group form-title col-8">
                 <li>
                   <a href="javascript:void(0)" class="btn" [ngClass]="{'btn-info': loginFormIsShow, 'text-white': loginFormIsShow}" 
@@ -82,8 +82,142 @@
                 <button type="button" class="btn btn-outline-warning btn-block">注册</button>
               </div>
             </div>
-          </form> 
-
+          </form>  -->
+          <div class="form-content">
+            <ul class="form-group form-title col-8">
+              <li>
+                <a href="javascript:void(0)" class="btn" [ngClass]="{'btn-info': loginFormIsShow, 'text-white': loginFormIsShow}" 
+                (click)="toggleFormShow('registerForm', true)">登录</a>
+              </li>
+              <li>
+                <a href="javascript:void(0)" class="btn" [ngClass]="{'btn-info': !loginFormIsShow, 'text-white': !loginFormIsShow}"
+                 (click)="toggleFormShow('loginForm', false)">注册</a>
+              </li>
+            </ul>
+            <form nz-form [nzType]="'horizontal'" [formGroup]="loginForm" (ngSubmit)="login()" *ngIf="loginFormIsShow">
+              <div nz-form-item nz-row>
+                <div nz-form-label nz-col [nzSpan]="5">
+                  <label nz-form-item-required>用户名</label>
+                </div>
+                <div nz-form-control nz-col [nzSpan]="16" [nzValidateStatus]="getFormControl('loginForm', 'username')">
+                  <nz-input [nzType]="'text'" formControlName="username" name="username" [nzPlaceHolder]="'请输入用户名'">
+                  </nz-input>
+                  <div nz-form-explain *ngIf="getFormControl('loginForm', 'username').dirty && getFormControl('loginForm', 'username').hasError('required')">
+                    请输入用户名
+                  </div>
+                  <div nz-form-explain *ngIf="loginError" class="text-danger">您输入的用户名和密码有误</div>
+                </div>
+              </div>
+              <div nz-form-item nz-row>
+                <div nz-form-label nz-col [nzSpan]="5">
+                  <label nz-form-item-required>密码</label>
+                </div>
+                <div nz-form-control nz-col [nzSpan]="16"  [nzValidateStatus]="getFormControl('loginForm', 'password')">
+                  <nz-input [nzType]="'password'" [nzPlaceHolder]="'请输入密码'" formControlName="password" name="password">
+                  </nz-input>
+                  <div nz-form-explain *ngIf="getFormControl('loginForm', 'password').dirty && getFormControl('loginForm', 'password').hasError('required')">
+                    请输入密码
+                  </div>
+                </div>
+              </div>
+              <div nz-form-item nz-row>
+                <div nz-form-control nz-col [nzSpan]="16" [nzOffset]="5">
+                  <label nz-checkbox formControlName="remember">
+                    <span>记住密码</span>
+                  </label>
+                  <a class="login-form-forgot" style="float: right;">忘记密码?</a>
+                </div>
+              </div>
+              <div nz-form-item nz-row>
+                <div [nzOffset]="5" nz-col [nzSpan]="16" nz-form-control>
+                  <button type="submit" nz-button [nzType]="'primary'" nz-col [nzSpan]="24" [nzSize]="'large'" [nzLoading]="isloadding">登录</button>
+                </div>
+              </div>
+              <!-- <div nz-form-item nz-row>
+                  <div nz-form-label nz-col [nzSpan]="5">
+                    <label>Validating</label
+                  </div>
+                  <div nz-col [nzSpan]="12" nz-form-control [nzValidateStatus]="'validating'" nzHasFeedback>
+                    <nz-input [ngModel]="'The content is being validating'" [nzSize]="'large'" name="validating">
+                    </nz-input>
+                    <div nz-form-explain>I'm the content is being validating</div>
+                  </div>
+                </div> -->
+            </form>
+            <form ng-form [formGroup]="registerForm" (ngSubmit)="register()" *ngIf="!loginFormIsShow">
+              <div nz-form-item nz-row>
+                <div nz-form-label nz-col [nzSpan]="5">
+                  <label nz-form-item-required>用户名</label>
+                </div>
+                <div nz-form-control nz-col [nzSpan]="16" [nzValidateStatus]="getFormControl('registerForm', 'username')" nzHasFeedback>
+                  <nz-input [nzSize]="'large'" formControlName="username" name="username">
+                  </nz-input>
+                  <div nz-form-explain *ngIf="getFormControl('registerForm','username').dirty&&getFormControl('registerForm','username').hasError('required')">请输入用户名!</div>
+                  <div nz-form-explain *ngIf="getFormControl('registerForm','username').dirty&&getFormControl('registerForm','username').hasError('username')">用户名不合法!</div>
+                  <!-- <div nz-form-explain *ngIf="getFormControl('username').dirty&&getFormControl('username').pending">验证中...</div> -->
+                </div>
+              </div>
+              <div nz-form-item nz-row>
+                <div nz-form-label nz-col [nzSpan]="5">
+                  <label nz-form-item-required>密码</label>
+                </div>
+                <div nz-form-control nz-col [nzSpan]="16" [nzValidateStatus]="getFormControl('registerForm','password')" nzHasFeedback>
+                  <nz-input [nzType]="'password'" formControlName="password" name="password">
+                  </nz-input>
+                  <div nz-form-explain *ngIf="getFormControl('registerForm','password').dirty && getFormControl('registerForm','password').hasError('required')">
+                    请输入密码
+                  </div>
+                  <div nz-form-explain *ngIf="getFormControl('registerForm','password').dirty && getFormControl('registerForm','password').hasError('minlength')">
+                    密码长度大于4位小于16位
+                  </div>
+                  <div nz-form-explain *ngIf="getFormControl('registerForm','password').dirty && getFormControl('registerForm','password').hasError('maxlength')">
+                    密码长度大于4位小于16位
+                  </div>
+                </div>
+              </div>
+              <div nz-form-item nz-row>
+                <div nz-form-label nz-col [nzSpan]="5">
+                  <label nz-form-item-required>确认密码</label>
+                </div>
+                <div nz-form-control nz-col [nzSpan]="16" [nzValidateStatus]="getFormControl('registerForm','passwordConfirm')" nzHasFeedback>
+                  <nz-input [nzType]="'password'" formControlName="passwordConfirm" name="passwordConfirm">
+                  </nz-input>
+                  <div nz-form-explain *ngIf="getFormControl('registerForm', 'passwordConfirm').dirty && getFormControl('registerForm','passwordConfirm').hasError('confirm')">
+                    两次密码输入不一致，请检查!
+                  </div>
+                </div>
+              </div>
+              <div nz-form-item nz-row>
+                <div nz-form-label nz-col [nzSpan]="5">
+                  <label nz-form-item-required>邮箱</label>
+                </div>
+                <div nz-form-control nz-col [nzSpan]="16" [nzValidateStatus]="getFormControl('registerForm', 'email')" nzHasFeedback>
+                  <nz-input formControlName="email" name="email">
+                  </nz-input>
+                  <div nz-form-explain *ngIf="getFormControl('registerForm', 'email').dirty && getFormControl('registerForm', 'email').hasError('email')">
+                    邮箱格式不正确，请检查！
+                  </div>
+                </div>
+              </div>
+              <div nz-form-item nz-row>
+                <div nz-form-label nz-col [nzSpan]="5">
+                  <label nz-form-item-required>手机号</label>
+                </div>
+                <div nz-form-control nz-col [nzSpan]="16" [nzValidateStatus]="getFormControl('registerForm', 'phone')" nzHasFeedback>
+                  <nz-input formControlName="phone" name="phone">
+                  </nz-input>
+                  <div nz-form-explain *ngIf="getFormControl('registerForm', 'phone').dirty && getFormControl('registerForm', 'phone').hasError('phone')">
+                    手机号码不合法，请检查!
+                  </div>
+                </div>
+              </div>
+              <div nz-form-item nz-row>
+                <div [nzOffset]="5" nz-col [nzSpan]="16" nz-form-control>
+                  <button type="submit" nz-button [nzType]="'primary'" nz-col [nzSpan]="24" [nzSize]="'large'">注册</button>
+                </div>
+              </div>
+            </form>
+          </div>
           <div class="card card-inverse">
             <img src="assets/img/n3.jpg" class="card-img-right" alt="爆款鞋">
             <!--  style="height: 100%;width: 100%; z-index: -1" -->
@@ -95,3 +229,4 @@
   </div>
 </div>
 <form action="index" method="get"></form>
+
