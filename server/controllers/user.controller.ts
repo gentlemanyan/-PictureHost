@@ -34,14 +34,12 @@ class UserController {
       }
     }
     catch(e) {
-      console.log(e);
-      ctx.status = 500;
+      ctx.status = 400;
       ctx.body = {
         retcode: '0001',
-        retmsg: '服务器异常，注册失败'
+        retmsg: e.errors.message || e._message
       }
     }
- 
   }
 
   public async get(ctx: Koa.Context) {

@@ -2,8 +2,10 @@
  * @description User Model
  * @author zhangyan create by 2017/12/11 
  */
-import {Schema, Model, model} from 'mongoose';
+import {Schema, Model, model, ValidationError} from 'mongoose';
 import * as mongoose from 'mongoose';
+import * as crypto from 'crypto';
+import * as uniqValidator from 'mongoose-beautiful-unique-validation';
 
 const userSchema: Schema = new Schema({
   id: mongoose.Schema.Types.ObjectId,
@@ -22,7 +24,7 @@ const userSchema: Schema = new Schema({
     validate: [
       {
         validator: (value) => {
-          return /\w+@[A-z0-9]+\.(com|cn)$/.test(value);
+          return /[A-z0-9_]+@[A-z0-9]+\.[a-z0-9]{2,5}$/.test(value);
         },
         msg: '无效的邮箱格式，请使用正确的邮箱'
       }
@@ -41,5 +43,24 @@ const userSchema: Schema = new Schema({
     ],
   }
 });
+
+
+userSchema.virtual('password').set(function(password: string){
+  if (password !== undefined) {
+    if (password.length < 4) {
+      this.invalidate('password', '密码长度必须大于4位');
+    }
+    if (password.length > 16) {
+      this.invalidate('password', '密码长度必须小于16位');
+    }
+    
+    this._password = password;
+    if (password) {
+      this.saltPassword = crypto.randomBytes(128).toString('base64');
+    }
+  }
+});
+
+userSchema.plugin(uniqValidator);
 
 export const User = model('User', userSchema);

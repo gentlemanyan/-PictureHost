@@ -186,8 +186,8 @@ export class LoginComponent implements OnInit {
     const promise = this.userService.register( this.userService.registerParam );
     promise.then((data) => {
       this._message.success(data.retmsg);
-    }, (error) => {
-      this._message.error(error.retmsg);
+    }, (data) => {
+      this._message.error(data.error.retmsg);
     })
   }
 }

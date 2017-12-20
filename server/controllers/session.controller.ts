@@ -25,7 +25,7 @@ class SessionController {
         };
       }
       else {
-        ctx.status = 401;
+        ctx.status = 400;
         ctx.body = {
           retmsg: '用户名或密码错误!',
         };
