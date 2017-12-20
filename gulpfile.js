@@ -6,11 +6,10 @@ const mocha = require('gulp-mocha');
 const sourcemaps = require('gulp-sourcemaps');
 
 const del = require('del');
-const assets = ['./src/assets/*'];
 const appPath = './server/**/*.ts';
 const tsProject = ts.createProject('./server/tsconfig.json');
 
-gulp.task('lint', () => {
+gulp.task('lint', () => { 
   return gulp.src(appPath)
     .pipe(tslint({
       formatter: 'verbose'

@@ -16,9 +16,7 @@ export default {
       autoIndex: true
     },
   },
-  crypto: {
-    hash: {
-      length: 128,
-    },
+  saltHash: {
+    length: 128,
   },
 };
