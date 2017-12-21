@@ -1,10 +1,19 @@
 import { isNull } from '../lib/tool';
 import { User, IUserModel } from '../models/user.model';
 import RenderCtx from '../lib/render.class';
+const renderCtx = new RenderCtx();
 
-class SessionController {
-  private renderCtx = new RenderCtx();
+function setCookies(ctx, obj: Object, opts?: Object) {
+  for ( var prop in obj ) {
+    if ( opts === undefined ) {
+      ctx.cookies.set(prop, obj[prop]);
+    } else {
+      ctx.cookies.set(prop, obj[prop], opts);
+    }
+  }
+}
 
+export default class SessionController {
   constructor() {}
 
   public async create(ctx, next) {
@@ -21,13 +30,20 @@ class SessionController {
         next();
       }
       if (user.checkPassword( reqObj.password )) {
-        ctx.cookies.set('username', reqObj.username);
-        ctx.cookies.set('password', reqObj.password);
-        this.renderCtx.renderSuccess(ctx, 200, 'login', {
+        if ( ctx.session[reqObj.username] ) {
+          renderCtx.renderFaild(ctx, 401, 'login', {retmsg: '用户已经登录'});
+        }
+        else {
+          ctx.session[reqObj.username] = user;
+        }
+        
+        setCookies(ctx, user);
+
+        renderCtx.renderSuccess(ctx, 200, 'login', {
           retmsg: '登录成功!'
         });
       } else {
-        this.renderCtx.renderFaild(ctx, 400, 'login', {
+        renderCtx.renderFaild(ctx, 400, 'login', {
           retmsg: '用户名或密码错误!'
         });
       }
@@ -38,5 +54,3 @@ class SessionController {
 
   }
 }
-
-export default new SessionController();

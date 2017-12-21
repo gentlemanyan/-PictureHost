@@ -2,10 +2,9 @@ import * as Koa from 'koa';
 import { User, IUserModel } from '../models/user.model';
 import config from '../config/config';
 import RenderCtx from '../lib/render.class';
+const renderCtx = new RenderCtx();
 
-class UserController {
-  private renderCtx = new RenderCtx();
-  
+class UserController {  
   constructor() {}
 
   public async create(ctx: Koa.Context) {
@@ -18,13 +17,13 @@ class UserController {
     try {
       const result = await user.save();
       if ( result ) {
-        this.renderCtx.renderSuccess(ctx, 200, 'register', {
+        renderCtx.renderSuccess(ctx, 200, 'register', {
           retcode: '0000',
           retmsg: '注册成功'
         });
       }
       else {
-        this.renderCtx.renderFaild(ctx, 500, 'register', {
+        renderCtx.renderFaild(ctx, 500, 'register', {
           retcode: '0001',
           retmsg: '服务器异常，注册失败'
         });
@@ -51,10 +50,10 @@ class UserController {
         next();
       }
       if (user.checkPassword( reqObj.password )) {
-        this.renderCtx.renderSuccess(ctx, 200, 'users', {});
+        renderCtx.renderSuccess(ctx, 200, 'users', {});
       }
       else {
-        this.renderCtx.renderFaild(ctx, 400, 'users', {});
+        renderCtx.renderFaild(ctx, 400, 'users', {});
       }
     });
 

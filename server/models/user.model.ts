@@ -30,7 +30,7 @@ const userSchema: Schema = new Schema({
   },
   name: {
     type: String,
-    unique: '昵称已存在'
+    default: 'test' + Date.now
   },
   passwordHash: {
     type: String,

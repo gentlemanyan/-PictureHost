@@ -43,6 +43,7 @@ app.use(async (ctx, next) => {
   const end = new Date().getTime();
   const ms = end - start;
   console.log(`${ctx.method} ${ctx.url} - ${ms}ms`);
+  ctx.set('X-Response-Time', `${ms}ms`); 
 });
 
 // routes
@@ -50,7 +51,7 @@ app.use(index.routes()); // index.allowedMethods()
 
 // error-handling
 app.on('error', (err, ctx) => {
-  console.log('发现错误：', err);
+  console.log('发现错误:', err);
   ctx.status = 500;
   ctx.body = err._message;
 });

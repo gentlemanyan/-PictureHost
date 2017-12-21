@@ -1,7 +1,8 @@
 import * as Router from 'koa-router';
-import session from '../controllers/session.controller';
+import SessionController from '../controllers/session.controller';
 
 const router = new Router();
+const session = new SessionController();
 
 router.prefix('/session');
 
