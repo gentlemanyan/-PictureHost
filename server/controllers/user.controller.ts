@@ -8,7 +8,7 @@ class UserController {
   constructor() {}
 
   public async create(ctx: Koa.Context) {
-    const user = new User({
+    const user: IUserModel = new User({
       username: ctx.request.body.username,
       password: ctx.request.body.password,
       phone: ctx.request.body.phone,
@@ -17,16 +17,10 @@ class UserController {
     try {
       const result = await user.save();
       if ( result ) {
-        renderCtx.renderSuccess(ctx, 200, 'register', {
-          retcode: '0000',
-          retmsg: '注册成功'
-        });
+        renderCtx.renderSuccess(ctx, 200, 'register', '注册成功');
       }
       else {
-        renderCtx.renderFaild(ctx, 500, 'register', {
-          retcode: '0001',
-          retmsg: '服务器异常，注册失败'
-        });
+        renderCtx.renderFaild(ctx, 500, 'register', '服务器异常，注册失败');
       }
     }
     catch(e) {
@@ -50,10 +44,10 @@ class UserController {
         next();
       }
       if (user.checkPassword( reqObj.password )) {
-        renderCtx.renderSuccess(ctx, 200, 'users', {});
+        renderCtx.renderSuccess(ctx, 200, 'users', '');
       }
       else {
-        renderCtx.renderFaild(ctx, 400, 'users', {});
+        renderCtx.renderFaild(ctx, 400, 'users', '');
       }
     });
 

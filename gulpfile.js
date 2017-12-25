@@ -28,7 +28,7 @@ gulp.task('scripts', ['lint'], () => {
     .pipe(gulp.dest('./server/dist'));
 });
 
-gulp.task('watch', ['scripts'], () => {
+gulp.task('watch', ['scripts', 'nodemon'], () => {
   gulp.watch(appPath, ['scripts']);
 });
 

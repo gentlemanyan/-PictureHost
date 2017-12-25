@@ -9,7 +9,7 @@ import * as uniqValidator from 'mongoose-beautiful-unique-validation';
 import config from '../config/config';
 import PubDefine from '../lib/pubdefine';
 
-export interface IUserModel {
+export interface IUserModel extends mongoose.Document {
   username: string;
   name?: string;
   passwordHash: string;
@@ -114,4 +114,4 @@ userSchema.methods.checkPassword = function(password): boolean {
 
 userSchema.plugin(uniqValidator);
 
-export const User = model('User', userSchema);
+export const User: Model<IUserModel> = model<IUserModel>('User', userSchema);

@@ -3,86 +3,6 @@
     <div class="row">
       <div class="col-12">
         <div class="loginForm">
-          <!-- <form class="form-horizontal form-content" [formGroup]="loginForm" name="loginForm" (submit)="login()" novalidate>
-              <ul class="form-group form-title col-8">
-                <li>
-                  <a href="javascript:void(0)" class="btn" [ngClass]="{'btn-info': loginFormIsShow, 'text-white': loginFormIsShow}" 
-                  (click)="toggleFormShow(true)">登录</a>
-                </li>
-                <li>
-                  <a href="javascript:void(0)" class="btn" [ngClass]="{'btn-info': !loginFormIsShow, 'text-white': !loginFormIsShow}" 
-                  (click)="toggleFormShow(false)">注册</a>
-                </li>
-              </ul>
-            <div class="login-content" *ngIf="loginFormIsShow">
-              <div class="form-group">
-                <div class="input-group col-12">
-                  <span class="input-group-addon bg-info text-white col-auto">帐号</span>
-                  <input type="text" id="username" name="username" formControlName="username"
-                   class="form-control" placeholder="请输入用户名" aria-label="请输入用户名">
-                   <span class="text-danger" *ngIf="getFormControl('username').dirty && getFormControl('username').hasError('username')">账户格式不正确</span>
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="input-group col-12">
-                  <span class="input-group-addon bg-info text-white col-auto">密码</span>
-                  <input type="password" id="password" name="password" formControlName="password"
-                  class="form-control" placeholder="请输入4-16位密码">  
-                  <div class="alert alert-danger" *ngIf="getFormControl('password').invalid && getFormControl('password').dirty">密码最小4位最大16位</div>
-                </div>
-              </div>
-              <div class="form-group col-12">
-                <div class="form-check">
-                  <label class="form-check-label">
-                    <input class="form-check-input" type="checkbox"> 记住密码
-                  </label>
-                </div>
-              </div>
-              <div class="form-group col-12">
-                <button type="submit" class="btn btn-outline-primary btn-block">登录</button>
-              </div>
-              <div class="form-group col-12">
-                <div class="float-left">
-                  <a href="javascript:void(0)" class="text-muted">其他登录方式</a>
-                </div>
-                <div class="float-right">
-                  <a href="javascript:void(0)" class="text-muted">忘记密码?</a>
-                </div>
-              </div>
-            </div>
-            <div class="register-content" *ngIf="!loginFormIsShow">
-              <div class="form-group">
-                <div class="input-group col-12">
-                  <span class="input-group-addon bg-info text-white col-2">用户帐号</span>
-                  <input type="text" id="username" name="username" class="form-control" 
-                  placeholder="请输入用户名" aria-label="请输入用户名">
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="input-group col-12">
-                  <span class="input-group-addon bg-info text-white col-2">输入密码</span>
-                  <input type="password" id="password" name="password" class="form-control" 
-                  minlength="4" maxlength="16" placeholder="请输入4-16位密码">
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="input-group col-12">
-                  <span class="input-group-addon bg-info text-white col-2">确认密码</span>
-                  <input type="password" id="passwordConfirm" name="passwordConfirm" class="form-control"
-                   minlength="4" maxlength="16" placeholder="请确认您的密码">
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="input-group col-12">
-                  <span class="input-group-addon bg-info text-white col-2">电子邮箱</span>
-                  <input type="password" id="email" name="email" class="form-control" placeholder="请输入您的电子邮箱">
-                </div>
-              </div>
-              <div class="form-group col-12">
-                <button type="button" class="btn btn-outline-warning btn-block">注册</button>
-              </div>
-            </div>
-          </form>  -->
           <div class="form-content">
             <ul class="form-group form-title col-8">
               <li>
@@ -105,7 +25,7 @@
                   <div nz-form-explain *ngIf="getFormControl('loginForm', 'username').dirty && getFormControl('loginForm', 'username').hasError('required')">
                     请输入用户名
                   </div>
-                  <div nz-form-explain *ngIf="loginError" class="text-danger">您输入的用户名和密码有误</div>
+                  <div nz-form-explain class="text-danger">{{loginErrMsg}}</div>
                 </div>
               </div>
               <div nz-form-item nz-row>

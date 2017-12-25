@@ -26,7 +26,7 @@ onerror(app);
 app.use(bodyparser({
   enableTypes: ['json', 'form', 'text'],
 }));
-app.use(session({}, app));
+app.use(session({signed: false, maxAge: 60 * 60 * 1000}, app));
 app.use(json());
 app.use(logger());
 app.use(serve(path.resolve(__dirname, '../../dist')));

@@ -22,9 +22,7 @@ router.get('/*', async (ctx, next) => {
 });
 
 router.post('/*', async (ctx, next) => {
-  renderCtx.renderSuccess(ctx, 400, 'request error', {
-    retmsg: '请求错误，没有该功能'
-  });
+  renderCtx.renderSuccess(ctx, 400, 'request error', '请求错误，没有该功能');
 })
 
 export default router;

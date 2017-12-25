@@ -1,8 +1,9 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { EventEmitter, Component, OnInit, ViewEncapsulation, Output } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Observable } from 'rxjs/Rx';
-import { Routes, Router, RouterModule, ActivatedRoute, PreloadAllModules } from '@angular/router';
+import { Routes, Router, RouterModule, ActivatedRoute } from '@angular/router';
 import { NzMessageService } from 'ng-zorro-antd';
+
 import { IUser, UserService } from './login.service';
 import * as md5 from 'md5';
 
@@ -19,7 +20,7 @@ export class LoginComponent implements OnInit {
   public loginForm: FormGroup;
   public registerForm: FormGroup;
   public loginFormIsShow: boolean = true;   // 是否显示登录框
-  public loginError: boolean = false;       // 是否登录成功
+  public loginErrMsg: string = '';       // 是否登录成功
   public isloadding: boolean = false; 
 
   constructor(public userService: UserService, private fb: FormBuilder,
@@ -141,14 +142,14 @@ export class LoginComponent implements OnInit {
    * 用户登录
    */
   public login() {
+    this.isloadding = true;
+
     for (const i in this.loginForm.controls) {
       this.loginForm.controls[ i ].markAsDirty();
     }
     if ( this.loginForm.invalid ) {
       return;
     }
-
-    this.isloadding = true;
 
     this.userService.loginParam.username = this.getFormControl('loginForm', 'username').value;
     this.userService.loginParam.password = md5(this.getFormControl('loginForm', 'password').value);
@@ -157,14 +158,14 @@ export class LoginComponent implements OnInit {
       // 手动导航到首页
       this._message.success(data.retmsg);
       setTimeout(() => {
-        this.router.navigate(['/']);
-      }, 2000);
+        this.router.navigate([`home/${data.data.username}`]);
+      }, 1000);
       this.isloadding = false;
-    }, (error) => {
-      this.loginError = true;
+    }, (data) => {
+      console.log(data);
       setTimeout(() => {
-        this.loginError = false;
-      }, 2000)
+        this.loginErrMsg = data.error.retmsg;
+      }, 2000);
       this.isloadding = false;
     });
   }
@@ -188,6 +189,6 @@ export class LoginComponent implements OnInit {
       this._message.success(data.retmsg);
     }, (data) => {
       this._message.error(data.error.retmsg);
-    })
+    });
   }
 }

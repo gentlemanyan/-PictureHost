@@ -3,22 +3,41 @@ import * as Koa from 'koa';
 export default class RenderCtx {
   constructor() {}
 
-  public renderSuccess(ctx: Koa.Context, status: number, type: string, data: any) {
+  public renderSuccess(ctx: Koa.Context, status: number, type: string, retmsg: string, data?: Object) {
     ctx.status = status;
 
-    ctx.body = {
-      success: true,
-      type: type,
-      data: data,
-    };
+    if ( data === undefined ) {
+      ctx.body = {
+        success: true,
+        type: type,
+        retmsg: retmsg
+      };
+    } else {
+      ctx.body = {
+        success: true,
+        type: type,
+        retmsg: retmsg,
+        data: data
+      };
+    }
+   
   }
 
-  public renderFaild(ctx: Koa.Context, status: number, type: string, errors: any) {
+  public renderFaild(ctx: Koa.Context, status: number, type: string, retmsg: string, data?: Object) {
     ctx.status = status;
-    ctx.body = {
-      success: false,
-      type: type,
-      errors: errors,
-    };
+    if ( data === undefined ) {
+      ctx.body = {
+        success: true,
+        type: type,
+        retmsg: retmsg
+      };
+    } else {
+      ctx.body = {
+        success: true,
+        type: type,
+        retmsg: retmsg,
+        data: data
+      };
+    }
   }
 }
