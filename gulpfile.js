@@ -9,14 +9,14 @@ const del = require('del');
 const appPath = './server/**/*.ts';
 const tsProject = ts.createProject('./server/tsconfig.json');
 
-gulp.task('lint', () => { 
+gulp.task('lint', ['clean'], () => { 
   return gulp.src(appPath)
     .pipe(tslint({
       formatter: 'verbose'
     }))
     .pipe(tslint.report({
       reportLimit: 5
-    }))
+    }));
 });
 
 gulp.task('scripts', ['lint'], () => {
@@ -26,10 +26,6 @@ gulp.task('scripts', ['lint'], () => {
     .js
     .pipe(sourcemaps.write(('maps')))
     .pipe(gulp.dest('./server/dist'));
-});
-
-gulp.task('watch', ['scripts', 'nodemon'], () => {
-  gulp.watch(appPath, ['scripts']);
 });
 
 gulp.task('set-test-node-env', function() {
@@ -52,13 +48,17 @@ gulp.task('test-controllers', ['set-test-node-env', 'scripts'], () => {
 gulp.task('nodemon', ['scripts'], () => {
   return nodemon({
     script: './server/dist/index.js',
-    watch: ['./server/*.ts']
+    watch: ['./server/**/*.ts']
   });
 });
 
-gulp.task('clean', () => {
-  return del(['./server/dist/**', '!dist'], {force:true});
+gulp.task('watch', ['scripts'], () => {
+  gulp.watch(appPath, ['clean','scripts']);
 });
 
-gulp.task('default', ['clean', 'watch', 'nodemon']);
+gulp.task('clean', () => {
+  return del(['./server/dist/**', '!dist'], {force: true});
+});
+
+gulp.task('default', ['watch', 'nodemon']);
 gulp.task('test', ['clean', 'test-controllers']);
